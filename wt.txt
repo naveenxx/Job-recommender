@@ -1,0 +1,14 @@
+class StringField(Field):
+    """
+    This field is the base for most of the more complicated fields, and
+    represents an ``<input type="text">``.
+    """
+
+    widget = widgets.TextInput()
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            self.data = valuelist[0]
+
+    def _value(self):
+        return str(self.data) if self.data is not None else ""

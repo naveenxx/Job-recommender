@@ -1,0 +1,26 @@
+index.html
+
+{% if name %}
+		hello {{name}}!
+	{% else %}
+		hello stranger !
+	{% endif %}
+	<h2>{{form.name.label}} {{form.name()}}</h2>
+
+
+app.py
+
+class nameform(FlaskForm):
+	name = StringField('Enter your name',validators=[DataRequired()])
+	submit = SubmitField('Submit')
+
+
+from flask import Flask
+from pymongo import MongoClient
+
+app = Flask(__name__)
+
+client = MongoClient('localhost', 27017)
+
+db = client.flask_db
+todos = db.todos

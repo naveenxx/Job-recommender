@@ -1,0 +1,65 @@
+MongoDB
+
+To change password of any User:
+
+db.updateUser('username',{pwd:'thisisthepass'})
+this changes the password, i thought root is the admin username but, it seems myUserAdmin is the admin username
+
+and i accessed the admin simply with use admin . 
+
+show users list all users
+
+first the security is disabled in mongodb,
+
+first i changed the admin password to 'password123' using
+
+db.updateUser('myUserAdmin',{pwd:'password123'})
+
+then i configured /opt/homebrew/etc/mongod.conf file
+by adding,
+
+security:
+	authorization: "enabled"
+
+now we can login to mongosh but cannot access anything , to access something , 
+we have to authenticate ourselves using db.auth(username,password)
+
+this command will only work on our database, ie admin
+
+so first , -> use admin
+then, 
+db.auth('myUserAdmin','password123')
+now we are logged in ,
+
+
+now for my project "job recommender",
+I am gonna need to create a database and i have create a user to be admin for that database.
+to do so , i have added the link of all roles for an user to raindrop
+check that out ,
+
+use jb #create database jb
+
+now to create user,
+
+db.createUser(
+	{
+		user:"jbadmin",
+		pwd: passwordPrompt(), #jbadminpass
+		roles:[
+			{role:"readWrite",db:"jb"}
+		]
+	}
+)
+
+
+it seems we can only authorize users while using admin database
+
+
+FInd()
+
+To only include name from a document where username = aravind
+db.coll.find({'username':'aravind'},{'name':1,{_id:0}})
+
+mongo cursor objects are indexable
+
+

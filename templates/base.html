@@ -1,0 +1,41 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/main.css')}}">
+</head>
+<body>
+	{% block first %}{% endblock first %}
+</body>
+</html>
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<div>
+		<form>
+			<label for ='uname'>Username</label>
+			<input type='text' id = 'uname' placeholder='Enter Username'>
+			<label>Password</label>
+			<input type='text' placeholder='Enter password'>
+			<button type='submit'>Login</button>
+			<a href = ''>forgot password?</a>
+			<a href = ''>Create Account</a>
+		</form>
+	</div>
+	{% if name %}
+		<h3>hello {{name}}</h3>
+	{% else %}
+		<h3>hello stranger!</h3>
+	{% endif %}
+
+
+</body>
+</html>
